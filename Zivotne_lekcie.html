@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Životné lekcie pre úspech</title>
+    <!-- Načítanie Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Nastavenie fontu a vlastných farieb pre gradient -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        /* Definícia vlastného gradientu pre telo a hover efekt */
+        .bg-gradient-primary {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .text-gradient-primary {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, #667eea, #764ba2);
+            transition: all 0.3s ease;
+        }
+        
+        /* ZMENA 1: Zabezpečenie, že rozšírené tlačidlo je transparentné a šedé */
+        .lesson-card.expanded .toggle-btn {
+            color: #6b7280;
+            background-image: none;
+            background-color: transparent; /* Zabezpečí, že sa zruší Tailwind background trieda */
+            -webkit-text-fill-color: #6b7280;
+            font-weight: normal;
+            box-shadow: none; /* Odstráni prípadný tieň */
+        }
+        
+        .lang-button.active {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body class="bg-gradient-primary p-4 md:p-10 flex flex-col items-center">
+    <div class="container max-w-4xl w-full">
+        
+        <!-- HLAVIČKA S PREPÍNAČOM JAZYKA -->
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-10 mt-4">
+            <h1 id="main-title" data-i18n="title" class="text-center sm:text-left text-white p-2 text-3xl md:text-5xl font-extrabold tracking-tight shadow-lg mb-4 sm:mb-0 w-full sm:w-auto">
+                Životné Lekcie pre Úspech
+            </h1>
+            <!-- Prepínač jazyka -->
+            <div class="flex space-x-2 p-1 bg-white/20 rounded-full shadow-lg">
+                <button id="lang-sk" class="lang-button px-3 py-1 text-sm font-bold rounded-full transition-colors active">SK</button>
+                <button id="lang-en" class="lang-button px-3 py-1 text-sm font-bold rounded-full transition-colors text-white hover:bg-white/30">EN</button>
+            </div>
+        </div>
+        <!-- KONIEC HLAVIČKY -->
+
+        <!-- Mriežka kariet s lekciami -->
+        <div id="lesson-grid" class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+            <!-- Karta 1 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l1_title">1) Prestaň hovoriť ľuďom všetko.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l1_content">Udržiavanie svojich veľkých plánov, ambícií a budúceho úspechu v tichosti ti poskytuje strategickú psychologickú výhodu. Keď o svojich cieľoch hovoríš, tvoj mozog už predčasne uvoľňuje hormóny odmeny, čím znižuje tvoju motiváciu skutočne na nich pracovať – je to ilúzia pokroku. Navyše, v tichu eliminuješ nepotrebnú kritiku a negatívne energie od tých, ktorí by ťa mohli sabotovať, či už úmyselne alebo z nevedomosti. Tvoje činy nech hovoria za teba; výsledky sú hlasnejšie ako sľuby.</p>
+                </div>
+                <!-- ZMENA 2: Pridané bg-indigo-100/50, hover:bg-indigo-200/50, rounded-full a padding pre výraznejší vzhľad -->
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+
+            <!-- Karta 2 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l2_title">2) Vyberaj si priateľov múdro.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l2_content">Tvoje okolie je prediktorom tvojej budúcnosti. Priatelia, ktorých si vyberáš, nevedome ovplyvňujú tvoje finančné návyky, úroveň ambícií a dokonca aj tvoju kondíciu. Aktívne vyhľadávaj ľudí, ktorí sú tam, kde chceš byť ty, alebo ktorí pracujú na niečom väčšom. Nejde o to, vzdať sa starých priateľov, ale o **strategické pridávanie** inšpiratívnych osobností do tvojho vnútorného kruhu. Táto zmena prostredia je katalizátorom osobnej transformácie a zvyšovania tvojich štandardov.</p>
+                </div>
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+
+            <!-- Karta 3 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l3_title">3) Neočakávaj nič, oceň všetko.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l3_content">Prijatie filozofie nulového očakávania je najrýchlejšia cesta k duševnému pokoju. Očakávanie je často iba preddavok na zármutok. Keď vstúpiš do každej situácie bez predpokladov o výsledku, každá pozitívna udalosť sa stáva bonusom, a nie len naplnením nároku. Oceňovať malé a zdanlivo bezvýznamné veci – šálka kávy, slnečný deň, zdravotný stav – trénuje tvoj mozog vidieť svet ako miesto hojnosti, nie ako zdroj neustálej frustrácie. Vďačnosť je kotva v prítomnosti.</p>
+                </div>
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+
+            <!-- Karta 4 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l4_title">4) Snaž sa a dôveruj procesu.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l4_content">Namiesto zamerania sa na obrovský, vzdialený cieľ, sústreď sa na "mikro-víťazstvá" v každodennom procese. Disciplína je dôležitejšia ako motivácia, pretože motivácia je emócia, zatiaľ čo disciplína je rozhodnutie. Dôverovať procesu znamená prijať, že existujú obdobia plateau (náhornej plošiny), kedy nevidíš pokrok, ale tvoje úsilie sa hromadí ako úroky na účte. Tieto neviditeľné fázy budovania charakteru sú nevyhnutné. Pokračuj v práci, najmä keď nemáš pocit, že napreduješ, pretože práve tam sa rodí skutočný, neotrasiteľný úspech.</p>
+                </div>
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+
+            <!-- Karta 5 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l5_title">5) Ovládaj seba, nie OSTATNÝCH.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l5_content">Stoa nám pripomína, že najväčšia bitka sa odohráva v tvojej hlave. Energia, ktorú míňaš na snahu zmeniť iných alebo sa sťažovať na okolnosti (počasie, politika), je zbytočná a vyčerpávajúca. Preusmerni túto energiu na budovanie sebaovládania: ako reaguješ na kritiku, ako sa držíš svojho rozvrhu a aké sú tvoje reakcie v stresových situáciách. Tvoja sloboda leží v tvojej schopnosti zvoliť si reakciu. Čím viac ovládaš svoj vnútorný svet, tým menej ťa môže ovplyvniť svet vonkajší.</p>
+                </div>
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+
+            <!-- Karta 6 -->
+            <div class="lesson-card bg-white/95 rounded-xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+
+                <span class="lesson-title block text-2xl font-bold text-gray-800 mb-2" data-i18n="l6_title">6) Nauč sa menej reagovať.</span>
+                <div class="lesson-content max-h-16 overflow-hidden transition-all duration-300">
+                    <p class="text-gray-600 leading-relaxed" data-i18n="l6_content">Nauč sa hovoriť "dobre, porozmýšľam o tom" namiesto impulzívnej odpovede. Väčšina situácií, ktoré si vyžadujú okamžitú a emotívnu reakciu, v skutočnosti neexistuje. Impulzívne reagovanie je znakom emocionálnej nezrelosti. Ak vytvoríš "medzeru" medzi udalosťou a tvojou reakciou (napr. počítanie do desať, hlboký nádych), preberáš kontrolu. Táto malá pauza ti umožní prejsť z plazového mozgu (boj/útek) do logického, racionálneho myslenia, čím chrániš svoju povesť, vzťahy a predovšetkým svoj vnútorný pokoj.</p>
+                </div>
+                <button class="toggle-btn mt-3 text-sm font-semibold text-gradient-primary inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-100/50 hover:bg-indigo-200/50 transition duration-150" data-i18n-btn="read_more">Čítať viac</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pätička -->
+    <footer class="mt-10 text-center text-white/80 text-sm">
+        <p data-i18n="footer_p1">Vytvorené pre inšpiratívne prezentácie</p>
+        <p data-i18n="footer_p2">Poháňané nadčasovou múdrosťou</p>
+    </footer>
+
+    <script>
+        const translations = {
+            'sk': {
+                'title': 'Životné Lekcie pre Úspech',
+                'l1_title': '1) Prestaň hovoriť ľuďom všetko.',
+                'l1_content': 'Udržiavanie svojich veľkých plánov, ambícií a budúceho úspechu v tichosti ti poskytuje strategickú psychologickú výhodu. Keď o svojich cieľoch hovoríš, tvoj mozog už predčasne uvoľňuje hormóny odmeny, čím znižuje tvoju motiváciu skutočne na nich pracovať – je to ilúzia pokroku. Navyše, v tichu eliminuješ nepotrebnú kritiku a negatívne energie od tých, ktorí by ťa mohli sabotovať, či už úmyselne alebo z nevedomosti. Tvoje činy nech hovoria za teba; výsledky sú hlasnejšie ako sľuby.',
+                'l2_title': '2) Vyberaj si priateľov múdro.',
+                'l2_content': 'Tvoje okolie je prediktorom tvojej budúcnosti. Priatelia, ktorých si vyberáš, nevedome ovplyvňujú tvoje finančné návyky, úroveň ambícií a dokonca aj tvoju kondíciu. Aktívne vyhľadávaj ľudí, ktorí sú tam, kde chceš byť ty, alebo ktorí pracujú na niečom väčšom. Nejde o to, vzdať sa starých priateľov, ale o **strategické pridávanie** inšpiratívnych osobností do tvojho vnútorného kruhu. Táto zmena prostredia je katalizátorom osobnej transformácie a zvyšovania tvojich štandardov.',
+                'l3_title': '3) Neočakávaj nič, oceň všetko.',
+                'l3_content': 'Prijatie filozofie nulového očakávania je najrýchlejšia cesta k duševnému pokoju. Očakávanie je často iba preddavok na zármutok. Keď vstúpiš do každej situácie bez predpokladov o výsledku, každá pozitívna udalosť sa stáva bonusom, a nie len naplnením nároku. Oceňovať malé a zdanlivo bezvýznamné veci – šálka kávy, slnečný deň, zdravotný stav – trénuje tvoj mozog vidieť svet ako miesto hojnosti, nie ako zdroj neustálej frustrácie. Vďačnosť je kotva v prítomnosti.',
+                'l4_title': '4) Snaž sa a dôveruj procesu.',
+                'l4_content': 'Namiesto zamerania sa na obrovský, vzdialený cieľ, sústreď sa na "mikro-víťazstvá" v každodennom procese. Disciplína je dôležitejšia ako motivácia, pretože motivácia je emócia, zatiaľ čo disciplína je rozhodnutie. Dôverovať procesu znamená prijať, že existujú obdobia plateau (náhornej plošiny), kedy nevidíš pokrok, ale tvoje úsilie sa hromadí ako úroky na účte. Tieto neviditeľné fázy budovania charakteru sú nevyhnutné. Pokračuj v práci, najmä keď nemáš pocit, že napreduješ, pretože práve tam sa rodí skutočný, neotrasiteľný úspech.',
+                'l5_title': '5) Ovládaj seba, nie OSTATNÝCH.',
+                'l5_content': 'Stoa nám pripomína, že najväčšia bitka sa odohráva v tvojej hlave. Energia, ktorú míňaš na snahu zmeniť iných alebo sa sťažovať na okolnosti (počasie, politika), je zbytočná a vyčerpávajúca. Preusmerni túto energiu na budovanie sebaovládania: ako reaguješ na kritiku, ako sa držíš svojho rozvrhu a aké sú tvoje reakcie v stresových situáciách. Tvoja sloboda leží v tvojej schopnosti zvoliť si reakciu. Čím viac ovládaš svoj vnútorný svet, tým menej ťa môže ovplyvniť svet vonkajší.',
+                'l6_title': '6) Nauč sa menej reagovať.',
+                'l6_content': 'Nauč sa hovoriť "dobre, porozmýšľam o tom" namiesto impulzívnej odpovede. Väčšina situácií, ktoré si vyžadujú okamžitú a emotívnu reakciu, v skutočnosti neexistuje. Impulzívne reagovanie je znakom emocionálnej nezrelosti. Ak vytvoríš "medzeru" medzi udalosťou a tvojou reakciou (napr. počítanie do desať, hlboký nádych), preberáš kontrolu. Táto malá pauza ti umožní prejsť z plazového mozgu (boj/útek) do logického, racionálneho myslenia, čím chrániš svoju povesť, vzťahy a predovšetkým svoj vnútorný pokoj.',
+                'read_more': 'Čítať viac',
+                'read_less': 'Čítať menej',
+                'footer_p1': 'Vytvorené pre inšpiratívne prezentácie',
+                'footer_p2': 'Poháňané nadčasovou múdrosťou'
+            },
+            'en': {
+                'title': 'Life Lessons for Success',
+                'l1_title': '1) Stop telling people everything.',
+                'l1_content': 'Keeping your big plans, ambitions, and future success quiet gives you a strategic psychological advantage. When you talk about your goals, your brain prematurely releases reward hormones, thus reducing your motivation to actually work on them—it\'s an illusion of progress. Furthermore, in silence, you eliminate unnecessary criticism and negative energies from those who might try to sabotage you, whether intentionally or unknowingly. Let your actions speak for you; results are louder than promises.',
+                'l2_title': '2) Choose your friends wisely.',
+                'l2_content': 'Your environment is a predictor of your future. The friends you choose unconsciously influence your financial habits, ambition level, and even your fitness. Actively seek out people who are where you want to be or who are working on something bigger than themselves. It\'s not about abandoning old friends, but about **strategically adding** inspiring individuals to your inner circle. This change in environment is a catalyst for personal transformation and raising your standards.',
+                'l3_title': '3) Expect nothing, appreciate everything.',
+                'l3_content': 'Adopting a philosophy of zero expectation is the fastest path to peace of mind. Expectation is often just a prepayment for disappointment. When you enter every situation without preconceptions about the outcome, every positive event becomes a bonus, not just the fulfillment of an entitlement. Appreciating the small and seemingly insignificant things—a cup of coffee, a sunny day, your health—trains your brain to see the world as a place of abundance, not a source of constant frustration. Gratitude is an anchor in the present moment.',
+                'l4_title': '4) Do your best and trust the process.',
+                'l4_content': 'Instead of focusing on a massive, distant goal, concentrate on the "micro-victories" in your daily process. Discipline is more important than motivation because motivation is an emotion, while discipline is a decision. Trusting the process means accepting that there are plateau periods when you don\'t see progress, but your efforts are compounding like interest in a bank account. These invisible character-building phases are essential. Continue to work, especially when you don\'t feel like you are advancing, because that is where true, unshakeable success is born.',
+                'l5_title': '5) Control yourself, not OTHERS.',
+                'l5_content': 'Stoicism reminds us that the greatest battle takes place in your own mind. The energy you spend trying to change others or complaining about circumstances (the weather, politics) is wasted and exhausting. Redirect that energy toward building self-mastery: how you react to criticism, how you stick to your schedule, and what your responses are in stressful situations. Your freedom lies in your ability to choose your reaction. The more you control your inner world, the less the external world can affect you.',
+                'l6_title': '6) Learn to react less.',
+                'l6_content': 'Learn to say, "Okay, I will think about that," instead of giving an impulsive answer. Most situations that demand an immediate and emotional reaction don\'t actually exist. Reacting impulsively is a sign of emotional immaturity. If you create a "gap" between the event and your reaction (e.g., counting to ten, taking a deep breath), you take control. This small pause allows you to switch from the reptilian brain (fight/flight) to logical, rational thinking, protecting your reputation, relationships, and above all, your inner peace.',
+                'read_more': 'Read more',
+                'read_less': 'Read less',
+                'footer_p1': 'Created for inspirational presentations',
+                'footer_p2': 'Powered by timeless wisdom'
+            }
+        };
+
+        let currentLang = 'sk';
+
+        function updateTextContent(lang) {
+            // Preloží statické texty (hlavička, lekcie, pätička)
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Aktualizuje všetky tlačidlá 'Čítať viac' / 'Čítať menej'
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                const card = btn.closest('.lesson-card');
+                const isExpanded = card.classList.contains('expanded');
+                const key = isExpanded ? 'read_less' : 'read_more';
+                btn.textContent = translations[lang][key];
+            });
+        }
+
+        function switchLanguage(lang) {
+            if (lang === currentLang) return;
+
+            // 1. Zmení aktívny stav tlačidiel
+            document.getElementById(`lang-${currentLang}`).classList.remove('active');
+            document.getElementById(`lang-${currentLang}`).classList.add('text-white', 'hover:bg-white/30');
+
+            currentLang = lang;
+
+            document.getElementById(`lang-${currentLang}`).classList.add('active');
+            document.getElementById(`lang-${currentLang}`).classList.remove('text-white', 'hover:bg-white/30');
+
+            // 2. Aktualizuje texty
+            updateTextContent(currentLang);
+            document.documentElement.lang = currentLang;
+            document.title = translations[currentLang].title + (currentLang === 'en' ? ' - Life Lessons' : ' - Životné lekcie');
+        }
+
+        function toggleExpand(card) {
+            const content = card.querySelector('.lesson-content');
+            const btn = card.querySelector('.toggle-btn');
+            
+            const isExpanded = card.classList.toggle('expanded');
+            
+            // Nastaví max-height a text tlačidla (použije preložený text)
+            if (isExpanded) {
+                // Nastaví výšku na základe skutočného obsahu + rezerva
+                // Zvýšil som rezervu na 60px pre dlhší text a lepší vizuál
+                content.style.maxHeight = content.scrollHeight + 60 + 'px'; 
+                btn.textContent = translations[currentLang]['read_less'];
+            } else {
+                content.style.maxHeight = '64px'; // max-h-16
+                btn.textContent = translations[currentLang]['read_more'];
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.lesson-card');
+
+            cards.forEach(card => {
+                const btn = card.querySelector('.toggle-btn');
+                
+                // Pridanie poslucháča pre celú kartu (aby sa to dalo rozkliknúť kdekoľvek)
+                card.addEventListener('click', () => toggleExpand(card));
+
+                // Zastavenie šírenia kliknutia z tlačidla (aby sa nespustilo dvakrát)
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleExpand(card);
+                });
+                
+                // Zabezpečenie počiatočného stavu (pre plynulú animáciu)
+                card.querySelector('.lesson-content').style.maxHeight = '64px';
+            });
+            
+            // Nastavenie poslucháčov pre prepínače jazyka
+            document.getElementById('lang-sk').addEventListener('click', () => switchLanguage('sk'));
+            document.getElementById('lang-en').addEventListener('click', () => switchLanguage('en'));
+
+            // Počiatočné nastavenie textu (SK)
+            updateTextContent(currentLang);
+        });
+    </script>
+</body>
+</html>
